@@ -1,4 +1,5 @@
 import { useState, useCallback, useEffect, useRef } from "react";
+import "./App.css";
 
 function App() {
   const [length, setLength] = useState(6);
@@ -19,11 +20,11 @@ function App() {
       pas += chars[randomIndex];
     }
     setPassword(pas);
-  }, [length, numberallowed, symbolallowed]);
+  }, [length, numberallowed, symbolallowed, setPassword]);
 
   const copypassword = useCallback(() => {
     passwordRef.current?.select();
-    passwordRef.current?.setSelectionRange(0, length); 
+    passwordRef.current?.setSelectionRange(0, length); // For mobile devices
     document.execCommand("copy");
   }, [password]);
 
@@ -34,12 +35,9 @@ function App() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white p-4">
       <div className="w-full max-w-lg shadow-lg rounded-xl p-6 bg-gray-800/80 backdrop-blur-md border border-gray-700">
-        
         <h1 className="text-2xl font-bold text-center mb-6 text-cyan-400">
           Password Generator
         </h1>
-
-        {/* Password field */}
         <div className="flex shadow-md rounded-lg overflow-hidden mb-5">
           <input
             type="text"
@@ -57,7 +55,6 @@ function App() {
           </button>
         </div>
 
-        {/* Controls */}
         <div className="space-y-3 text-sm">
           <div className="flex items-center gap-3">
             <input
@@ -68,7 +65,9 @@ function App() {
               className="cursor-pointer accent-cyan-500"
               onChange={(e) => setLength(Number(e.target.value))}
             />
-            <label className="select-none text-gray-300">Length: {length}</label>
+            <label className="select-none text-gray-300">
+              Length: {length}
+            </label>
           </div>
 
           <div className="flex items-center gap-2">
@@ -79,7 +78,10 @@ function App() {
               onChange={() => setNumberAllowed((prev) => !prev)}
               className="accent-blue-500"
             />
-            <label htmlFor="numberallowed" className="select-none text-gray-300">
+            <label
+              htmlFor="numberallowed"
+              className="select-none text-gray-300"
+            >
               Include Numbers
             </label>
           </div>
@@ -92,7 +94,10 @@ function App() {
               onChange={() => setSymbolAllowed((prev) => !prev)}
               className="accent-purple-500"
             />
-            <label htmlFor="symbolallowed" className="select-none text-gray-300">
+            <label
+              htmlFor="symbolallowed"
+              className="select-none text-gray-300"
+            >
               Include Symbols
             </label>
           </div>
