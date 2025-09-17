@@ -1,0 +1,44 @@
+@import "tailwindcss";
+
+#root {
+  margin: 0 auto;
+  text-align: center;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+button, input[type="range"], input[type="checkbox"] {
+  transition: all 0.2s ease-in-out;
+}
+
+/* Make text unselectable except password box */
+body, label {
+  user-select: none;
+}
+
+@media (max-width: 768px) {
+  #root {
+    padding: 1rem 0;
+  }
+  
+  .password-generator-container {
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .glass-effect {
+    background: rgba(0, 0, 0, 0.8);
+    border: 2px solid rgba(255, 255, 255, 0.8);
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
