@@ -84,6 +84,13 @@ function App() {
             >
               Include Numbers
             </label>
+
+            <button
+              className="bg-gradient-to-r from-purple-500 to-pink-600 hover:opacity-90 px-4 py-2 text-white font-semibold ml-auto hover:scale-105 transition-transform"
+              onClick={generatePassword}
+            >
+              ReGenerate
+            </button>
           </div>
 
           <div className="flex items-center gap-2">
