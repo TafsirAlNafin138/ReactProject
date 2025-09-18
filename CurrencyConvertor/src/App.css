@@ -1,0 +1,29 @@
+@import "tailwindcss";
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+
+:root {
+  --ui-surface: rgba(255,255,255,0.38);
+  
+}
+
+html, body, #root {
+  height: 100%;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: rgba(6,182,212,0.18);
+}
+
+.card-compact {
+  padding: 0.5rem;
+  border-radius: 0.75rem;
+}
+
+:focus {
+  outline: 2px solid rgba(6,182,212,0.18);
+  outline-offset: 2px;
+}
