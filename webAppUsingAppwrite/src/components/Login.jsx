@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { login as authLogin } from "../store/authSlice";
 import {Button, Input, Logo} from "./index";
@@ -70,7 +70,7 @@ function Login() {
             </form>
             <p className="mt-4 text-center text-sm text-gray-600">
                 Don't have an account?{" "}
-                <Link to="/register" className="text-blue-500 hover:underline">
+                <Link to="/signup" className="text-blue-500 hover:underline">
                     Register here
                 </Link>
             </p>

@@ -6,8 +6,8 @@ import { useNavigate } from 'react-router-dom'
 
 
 function Header() {
-    const auth = useSelector((state) => state.isAuthenticated);
-    const navigate = useNavigate()
+    const authStatus = useSelector((state) => state.auth.isAuthenticated);
+      const navigate = useNavigate();
 
     const navItems = [
       {
@@ -18,22 +18,22 @@ function Header() {
       {
         name: "Login",
         slug: "/login",
-        active: !auth,
+        active: !authStatus,
       },
       {
         name: "Signup",
         slug: "/signup",
-        active: !auth,
+        active: !authStatus,
       },
       {
         name: "All Posts",
         slug: "/all-posts",
-        active: auth,
+        active: authStatus,
       },
       {
         name: "Add Post",
         slug: "/add-post",
-        active: auth,
+        active: authStatus,
       },
     ];
 
@@ -62,7 +62,7 @@ function Header() {
                             </li>
                         ) : null
                     )}
-                    {auth && (
+                    {authStatus && (
                         <li>
                             <LogoutBtn />
                         </li>

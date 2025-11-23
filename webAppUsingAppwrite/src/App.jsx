@@ -22,23 +22,20 @@ function App() {
         dispatch(login(userData));
       }else{
         dispatch(logout());
-      }
+      } 
     }).finally(() => {
       setLoading(false);
     });
   }, []);
 
- return !loading ? (
-    <div className="min-h-screen flex flex-col bg-gray-100">
-      <div className='w-full block'>
+  return !loading ? (
+    
+         <main>
         <Header />
-        <main className="flex-grow container mx-auto px-4 py-8">
-          <Outlet/>
-          </main>
+        <Outlet />     
         <Footer />
-      </div>
-    </div>
- ) : null;
+        </main>
+  ) : null
 }
 
 export default App

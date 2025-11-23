@@ -129,4 +129,4 @@ export class Service{
 }
 
 const DBservice = new Service();
-export default DBservice;
+export default DBservice
