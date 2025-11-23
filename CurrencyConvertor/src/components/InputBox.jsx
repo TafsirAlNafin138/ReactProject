@@ -11,7 +11,7 @@ function InputBox({
   currencyDisable = false,
   className = "",
 }) {
-  const amountInputId = useId();
+  const amountInputId = useId(); // It generates a unique ID for the amount input field... This is useful for accessibility and associating the label with the input.
 
   return (
     <div

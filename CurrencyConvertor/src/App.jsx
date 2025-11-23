@@ -4,6 +4,20 @@ import InputBox from './components/InputBox.jsx'
 // import currencyinfo from './hooks/currencyinfo'
 
 function currencyinfo(currency){
+  // useEffect(()=>{
+    //     const fetchData = async () => {
+    //         try{
+    //             const response = await fetch(`https://latest.currency-api.pages.dev/v1/currencies/${currency}.json`)
+    //             const result = await response.json()
+    //             setData(result[currency])
+    //         }catch(error){
+    //             console.error("Error fetching currency data:", error)
+    //         }
+    //     }
+    //     fetchData()
+    // }, [currency])
+    // return data
+    
     const [data, setData] = useState({})
     useEffect(()=>{
         fetch(`https://latest.currency-api.pages.dev/v1/currencies/${currency}.json`).

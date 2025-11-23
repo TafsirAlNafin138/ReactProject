@@ -1,6 +1,8 @@
 import { useState, useCallback, useEffect, useRef } from "react";
 import "./App.css";
 
+// The main difference between usecallback and useeffect is that usecallback is used to memoize functions to prevent unnecessary re-creations, while useeffect is used to handle side effects in functional components.
+
 function App() {
   const [length, setLength] = useState(6);
   const [numberallowed, setNumberAllowed] = useState(false);
