@@ -6,7 +6,13 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 export default function PostForm({ post }) {
-    const { register, handleSubmit, watch, setValue, control, getValues } = useForm({
+    const { register, handleSubmit, watch, setValue, control, getValues } = useForm({      
+        // register is used on plain inputs to wire them into react-hook-form; 
+        // handleSubmit is a function that will wrap our submit handler to handle validation; 
+        // watch allows us to watch specific input values and trigger side effects; 
+        // setValue allows us to programmatically set the value of an input; 
+        // control is used for controlled components like RTE; 
+        // getValues retrieves current form values.
         defaultValues: {
             title: post?.title || "",
             slug: post?.$id || "",
