@@ -1,14 +1,12 @@
-import React from "react";
-import { Login } from "../components";
+import React from 'react'
 
-function LoginPage() {
-    return (
-        <div className="min-h-screen flex items-center justify-center bg-gray-100">
-            <div className="w-full max-w-md bg-white p-8 rounded shadow">
-                <Login />
-            </div>
-        </div>
-    );
+import { Login as LoginComponent } from '../components'
+function Login() {
+  return (
+    <div className='py-8'>
+        <LoginComponent />
+    </div>
+  )
 }
 
-export default LoginPage;
+export default Login

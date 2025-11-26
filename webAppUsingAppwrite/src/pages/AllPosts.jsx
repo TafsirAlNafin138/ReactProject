@@ -1,33 +1,28 @@
-import React, { use } from "react";
-import { useState, useEffect } from "react";
-import DBservice from "../appwrite/database";
-import { PostCard, Container } from "../components";
-import { set } from "react-hook-form";
+import React, {useState, useEffect} from 'react'
+import { Container, PostCard } from '../components'
+import appwriteService from "../appwrite/config";
 
 function AllPosts() {
-    const [posts, setPosts] = useState([]);
-    
-    useEffect(() => {
-        const fetchPosts = async () => {
-            const postsData = await DBservice.getAllPosts();
-            setPosts(postsData);
-        };
-        fetchPosts();
-    }, []);
-
-    return (
+    const [posts, setPosts] = useState([])
+    useEffect(() => {}, [])
+    appwriteService.getPosts([]).then((posts) => {
+        if (posts) {
+            setPosts(posts.documents)
+        }
+    })
+  return (
+    <div className='w-full py-8'>
         <Container>
-            <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100">
-                <div className="w-full max-w-4xl bg-white p-8 rounded shadow">
-                    <h1 className="text-2xl font-bold mb-6 text-center">All Posts</h1>
-                    {posts.length === 0 ? (
-                        <p className="text-center text-gray-500">No posts available.</p>
-                    ) : (
-                        posts.map((post) => <PostCard key={post.$id} post={post} />)
-                    )}
-                </div>
+            <div className='flex flex-wrap'>
+                {posts.map((post) => (
+                    <div key={post.$id} className='p-2 w-1/4'>
+                        <PostCard {...post} />
+                    </div>
+                ))}
             </div>
-        </Container>
-    );
+            </Container>
+    </div>
+  )
 }
-export default AllPosts;
+
+export default AllPosts

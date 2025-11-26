@@ -1,13 +1,8 @@
-import React from "react";
+import React from 'react'
 
-function Container({ children }) {
-    return (
-        <div className="min-h-screen flex flex-col bg-gray-100">
-            <div className='w-full block'>
-                   {children}
-                    </div>
-        </div>
-    );
+function Container({children}) {
+  return <div className='w-full max-w-7xl mx-auto px-4'>{children}</div>;
+  
 }
 
 export default Container;

@@ -1,30 +1,26 @@
-import React, {useEffect, useState} from "react";
-import {Link, useParams, useNavigate} from "react-router-dom";
-import {Container, Button} from "../components";
-import DBservice from "../appwrite/database";
-import {useSelector} from "react-redux";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import appwriteService from "../appwrite/config";
+import { Button, Container } from "../components";
 import parse from "html-react-parser";
+import { useSelector } from "react-redux";
 
-function Post() {
-    const { slug } = useParams();
+export default function Post() {
     const [post, setPost] = useState(null);
+    const { slug } = useParams();
     const navigate = useNavigate();
+
     const userData = useSelector((state) => state.auth.userData);
-    const isAuthor = post && userData && post.userId === userData.$id;
+
+    const isAuthor = post && userData ? post.userId === userData.$id : false;
+
     useEffect(() => {
-        if(slug){
-            const fetchPost = async () => {
-                const postData = await DBservice.getPostBySlug(slug);
-                if(postData){
-                  setPost(postData);
-                }else{
-                  navigate('/');
-                }
-            };
-            fetchPost();
-        }else{
-            navigate('/');
-        }
+        if (slug) {
+            appwriteService.getPost(slug).then((post) => {
+                if (post) setPost(post);
+                else navigate("/");
+            });
+        } else navigate("/");
     }, [slug, navigate]);
 
     const deletePost = () => {
@@ -69,4 +65,3 @@ function Post() {
         </div>
     ) : null;
 }
-export default Post;

@@ -1,35 +1,31 @@
-import React from "react";
-import { Container, PostForm } from "../components";
-import DBservice from "../appwrite/database";
-import { useParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import React, {useEffect, useState} from 'react'
+import {Container, PostForm} from '../components'
+import appwriteService from "../appwrite/config";
+import { useNavigate,  useParams } from 'react-router-dom';
 
 function EditPost() {
-    const { slug } = useParams();
-    const [post, setPost] = React.useState(null);
-    const navigate = useNavigate();
-    React.useEffect(() => {
-        if(slug){
-            const fetchPost = async () => {
-                const postData = await DBservice.getPostBySlug(slug);
-                if(postData){
-                  setPost(postData);
-                }
-            };
-            fetchPost();
-        }else{
-            navigate('/');
-        }
-    }, [slug, navigate]);
+    const [post, setPosts] = useState(null)
+    const {slug} = useParams()
+    const navigate = useNavigate()
 
-    return post ? (
+    useEffect(() => {
+        if (slug) {
+            appwriteService.getPost(slug).then((post) => {
+                if (post) {
+                    setPosts(post)
+                }
+            })
+        } else {
+            navigate('/')
+        }
+    }, [slug, navigate])
+  return post ? (
+    <div className='py-8'>
         <Container>
-            <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100">
-                <div className="w-full max-w-2xl bg-white p-8 rounded shadow">
-                    <PostForm post={post} />
-                </div>
-            </div>
+            <PostForm post={post} />
         </Container>
-    ) : null;
+    </div>
+  ) : null
 }
-export default EditPost;
+
+export default EditPost
